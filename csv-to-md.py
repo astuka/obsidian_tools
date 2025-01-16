@@ -21,7 +21,7 @@ def process_csv_file(csv_path, output_dir):
         
         for row in reader:
             total_rows += 1
-            # Get values from row
+            # CHANGE THESE TO MATCH YOUR CSV
             name = row['Name'].strip()
             category = row['MAIN CATEGORY'].strip()
             type_val = row['MAIN TYPE'].strip()
