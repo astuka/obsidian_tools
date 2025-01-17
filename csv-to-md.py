@@ -4,7 +4,7 @@ from pathlib import Path
 
 def sanitize_filename(filename):
     # Replace invalid filename characters with underscores
-    invalid_chars = '<>:"/\\|?*'
+    invalid_chars = '<>:"/\\|?🇵🇸*'
     for char in invalid_chars:
         filename = filename.replace(char, '_')
     return filename.strip()
