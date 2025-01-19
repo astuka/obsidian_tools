@@ -23,8 +23,8 @@ def process_csv_file(csv_path, output_dir):
             total_rows += 1
             # CHANGE THESE TO MATCH YOUR CSV
             name = row['Name'].strip()
-            category = row['MAIN CATEGORY'].strip()
-            type_val = row['MAIN TYPE'].strip()
+            #category = row['MAIN CATEGORY'].strip()
+            #type_val = row['MAIN TYPE'].strip()
             url = row['URL'].strip()
             
             # Generate filename
@@ -45,9 +45,11 @@ def process_csv_file(csv_path, output_dir):
             
             # Create markdown content
             content = []
-            content.append(f"Category: {category}")
-            if type_val:  # Only include type if not empty
-                content.append(f"Type: {type_val}")
+            
+            # if category:
+            #     content.append(f"Category: {category}")
+            # if type_val:  # Only include type if not empty
+            #     content.append(f"Type: {type_val}")
             content.append(f"URL: {url}")
             
             # Write to markdown file

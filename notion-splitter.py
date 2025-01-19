@@ -13,6 +13,10 @@ def get_unique_filename(directory, base_name, extension):
     
     return new_path.name
 
+def normalize_name(name):
+    """Convert spaces to underscores for comparison purposes."""
+    return name.replace(' ', '_')
+
 def process_files():
     # Create input and output directories if they don't exist
     input_dir = Path('input')
@@ -34,8 +38,8 @@ def process_files():
         if extension == '.md' and len(base_name) > 33 and ' ' in base_name:
             base_name = base_name[:-33]
         
-        # Add base name to set (without extension)
-        all_base_names.add(base_name)
+        # Add normalized base name to set (without extension)
+        all_base_names.add(normalize_name(base_name))
     
     # Second, process the files that need renaming
     for file_path in input_dir.iterdir():
@@ -62,11 +66,12 @@ def process_files():
     for old_path, new_name in md_files.items():
         # Get the base name (without extension) from the new name
         new_base_name = Path(new_name).stem
+        normalized_base = normalize_name(new_base_name)
         
         # Check if there are other files with the same base name but different extensions
         has_duplicate = False
         for file_path in input_dir.iterdir():
-            if (file_path.stem == new_base_name and 
+            if (normalize_name(file_path.stem) == normalized_base and 
                 file_path.suffix.lower() != '.md' and 
                 file_path != old_path):
                 has_duplicate = True
