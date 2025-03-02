@@ -16,7 +16,7 @@ def process_csv_file(csv_path, output_dir):
     total_rows = 0
     written_files = 0
     
-    with open(csv_path, 'r', encoding='utf-8') as file:
+    with open(csv_path, 'r', encoding='utf-8' ) as file: #if you get a unicodedecodeerror, replace "utf-8" with "cp1252"
         reader = csv.DictReader(file)
         
         for row in reader:
